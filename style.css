@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto&family=Roboto+Slab:wght@500&family=Ubuntu&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Alfa Slab One', sans-serif;
+}
+
+body {
+    background-color: blueviolet;
+}
+
+header {
+    background-color: grey;
+    height: 10vh;
+    font-size: 3.7rem;
+    padding-left: 2rem;
+    display: flex;
+}
+
+.onglets{
+    display: flex;
+    margin-left: 12rem;
+}
+
+.onglets a{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-decoration: none;
+    color: black;
+}
+
+.onglets a:hover{
+    color: white;
+    background-color: black;
+}
+
+.onglets p{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: white;
+    background-color: black;
+}
+
+nav {
+    background-color: lightgray;
+    height: 110vh;
+    width: 20vw;
+}
+
+article{
+    background-color: white;
+    width: 60vw;
+}
+
+aside{
+    background-color: lightgray;
+    width: 20vw;
+}
+
+footer{
+    background-color: grey;
+    height: 10vh;
+}
+
+section{
+    display: flex;
+}
+
+.contenu{
+    display: flex;
+}
+
+.nav-container{
+    background-color: white;
+    margin: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.nav-container p{
+    background-color: rgb(70, 70, 70);
+    color: white;
+    line-height: 3rem;
+    padding-left: 1rem;
+}
+
+.nav-container input{
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.nav-container ul{
+    padding: 1rem;
+    padding-top: 0.2rem;
+    margin: 1rem;
+}
+
+.nav-container ul li{
+    padding-bottom: 1rem;
+}
