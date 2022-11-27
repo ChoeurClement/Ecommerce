@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,25 +9,30 @@
 </head>
 <body>
     <header>
-        <p>P.M.U</p>
+        <p>MyShirt</p>
         <div class="onglets">
-            <a href="accueil.html">Accueil</a>
-            <a href="conseils.html">Conseils</a>
-            <a href="panier.html">Panier</a>
+            <a href="accueil.php">Accueil</a>
+            <a href="conseils.php">Conseils</a>
+            <a href="panier.php">Panier</a>
             <p>Compte</p>
         </div>
     </header>
     <div class="contenu">
         <nav>
-            <form action="verification.php" method="POST">
-                <form action="connexion.php" method="post">
-                    Pseudo: <input type="text" name="pseudo" />
-                    <br />
-                    Mot de passe: <input type="password" name="mdp" />
-                    <br />
-                    <input type="submit" name="connexion" value="Connexion" />
-                </form>
-            </form>
+        <?php 
+            if(isset($_SESSION["email"])){
+                echo "<p>Connecté en tant que : " . $_SESSION["email"] . "</p>";
+                echo "<a href='deconnexion.php' class='button'>Déconnexion</a>";
+            }else{
+                ?>
+                    <form action="connexion.php" method="post">
+                        <p>Mail: <input type="text" name="email" /></p>
+                        <p>Mot de passe: <input type="password" name="password" /></p>
+                        <input type="submit" name="connexion" value="Connexion" />
+                    </form>
+                <?php
+            }
+        ?>
         </nav>
         <section>
             <article>

@@ -7,21 +7,41 @@
     font-family: 'Alfa Slab One', sans-serif;
 }
 
-body {
-    background-color: blueviolet;
+body{
+    background-color: lightgray;
 }
 
 header {
     background-color: grey;
-    height: 10vh;
     font-size: 3.7rem;
     padding-left: 2rem;
+}
+
+section {
+    font-size: 4rem;
+}
+
+nav {
     display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    font-size: 4rem;
+    width: 100%;
+}
+
+article{
+    background-color: white;
+}
+
+aside{
+    background-color: lightgray;
 }
 
 .onglets{
     display: flex;
-    margin-left: 12rem;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 1rem;
 }
 
 .onglets a{
@@ -43,60 +63,86 @@ header {
     background-color: black;
 }
 
-nav {
-    background-color: lightgray;
-    height: 110vh;
-    width: 20vw;
-}
-
-article{
-    background-color: white;
-    width: 60vw;
-}
-
-aside{
-    background-color: lightgray;
-    width: 20vw;
-}
-
-footer{
-    background-color: grey;
-    height: 10vh;
-}
-
-section{
-    display: flex;
-}
-
-.contenu{
-    display: flex;
-}
-
 .nav-container{
     background-color: white;
-    margin: 1rem;
     margin-bottom: 2rem;
     border-radius: 1rem;
+    margin: 1rem;
 }
 
 .nav-container p{
     background-color: rgb(70, 70, 70);
     color: white;
-    line-height: 3rem;
+    line-height: 6rem;
     padding-left: 1rem;
 }
 
 .nav-container input{
     padding: 1rem;
     margin: 1rem;
+    width: 45%;
+    height: 100%;
+    font-size: 3.5rem;
 }
 
 .nav-container ul{
-    padding: 1rem;
+    padding: 3rem;
     padding-top: 0.2rem;
     margin: 1rem;
 }
 
 .nav-container ul li{
     padding-bottom: 1rem;
+}
+
+.button {
+    background-color: #1c87c9;
+    border: none;
+    color: white;
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 2rem;
+}
+
+footer{
+    background-color: grey;
+    font-size: 2rem;
+    line-height: 4rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .contenu{
+        display: flex;
+    }
+
+    nav{
+        width: 20%;
+    }
+
+    section{
+        width: 80%;
+    }
+
+    .nav-container p{
+        background-color: rgb(70, 70, 70);
+        color: white;
+        line-height: 6rem;
+        padding-left: 1rem;
+        font-size: 1.6rem;
+    }
+
+    .nav-container input{
+        height: auto;
+        width: 90%;
+        font-size: 2rem;
+    }
+
+    .nav-container ul{
+        font-size: 2rem;
+    }
 }
