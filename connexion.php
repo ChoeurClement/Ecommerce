@@ -27,7 +27,7 @@ session_start();
                 'email' => $email,
                 'password' => $password
             ]);
-            echo "Enregistrement effectué";
+            echo "Mauvais email ou mot de passe !";
         }
     }
 ?>
