@@ -30,7 +30,7 @@
                         <p>Mot de passe: <input type="password" name="password" /></p>
                         <input type="submit" name="connexion" value="Connexion" />
                     </form>
-                    <a href='inscription.php' class='button'>Inscription</a>
+                    <a href='inscription.html' class='button'>Inscription</a>
                 <?php
             }
         ?>

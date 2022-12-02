@@ -18,16 +18,9 @@ session_start();
             if(password_verify($password, $data[0]["password"])){
                 $_SESSION["email"] = $email;
                 header('location: compte.php');
+            } else{
+                echo "Mauvais email ou mot de passe !";
             }
-        }else{
-            $password = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO client (email, password) VALUES ('$email', '$password');";
-            $req = $db->prepare($sql);
-            $req->execute([
-                'email' => $email,
-                'password' => $password
-            ]);
-            echo "Mauvais email ou mot de passe !";
         }
     }
 ?>

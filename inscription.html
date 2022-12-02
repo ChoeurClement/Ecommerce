@@ -10,14 +10,38 @@
         <div class="formulaireInscription">
             <h1>Inscrivez-vous</h1>
             <p>Voici le formulaire permettant de vous inscrire.</p>
-            <form action="/page-traitement-donnees" method="post">
+            <form action="inscription.php" method="post">
                 <div>
                     <label for="nom">Nom</label>
-                    <input type="text" id="nom" name="nom" placeholder="Clement" required>
+                    <input type="text" id="nom" name="nom" placeholder="Choeur" required>
+                </div>
+                <div>
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Clement" required>
+                </div>
+                <div>
+                    <label for="adresse">Adresse</label>
+                    <input type="text" id="adresse" name="adresse" placeholder="1 rue de Paris" required>
+                </div>
+                <div>
+                    <label for="codePostal">Code Postal</label>
+                    <input type="text" id="codePostal" name="codePostal" placeholder="59300" required>
+                </div>
+                <div>
+                    <label for="ville">Ville</label>
+                    <input type="text" id="ville" name="ville" placeholder="Valenciennes" required>
+                </div>
+                <div>
+                    <label for="telephone">Telephone</label>
+                    <input type="text" id="telephone" name="telephone" placeholder="0606060607" required>
                 </div>
                 <div>
                     <label for="email">e-mail</label>
-                    <input type="email" id="email" name="email" placeholder="monadresse@mail.com" required>
+                    <input type="text" id="email" name="email" placeholder="monadresse@mail.com" required>
+                </div>
+                <div>
+                    <label for="password">password</label>
+                    <input type="password" id="password" name="password" placeholder="toto123" required>
                 </div>
                 <div>
                     <button type="submit">S'inscrire</button>

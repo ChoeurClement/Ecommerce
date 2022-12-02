@@ -25,36 +25,50 @@
                 <input type="button" value="Ok">
             </div>
             <div class="nav-container">
-                <p>Catégories</p>
-                <ul>
-                    <li>1</li>
-                </ul>
-            </div>
-            <div class="nav-container">
-                <p>Conseils</p>
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                </ul>
+                <p>Sélections</p>
+                <?php
+                    try{
+                        $db = new PDO('mysql:host=localhost;dbname=tpecommerce', 'root', '');
+                    }
+                    catch(Exception $e){
+                        die('Erreur : '.$e->getMessage());
+                    }
+
+                    $sql = "SELECT equipe FROM maillot GROUP BY equipe;";
+                    $result = $db->prepare($sql);
+                    $result->execute();
+                    
+                    if($result->rowCount() > 0){
+                        ?>
+                            <ul>
+                        <?php
+                        $data = $result->fetchAll();
+                        foreach ($data as $dt) {
+                            echo utf8_encode('<li>'.$dt['equipe'].'</li>');
+                        }
+                    }
+                ?>
+                            </ul>
             </div>
         </nav>
         <section>
             <article>
-                <p>Promotion</p>
+                <?php 
+                    $sql = "SELECT nomFichier FROM maillot;";
+                    $result = $db->prepare($sql);
+                    $result->execute();
+                    
+                    if($result->rowCount() > 0){
+                        ?>
+                            <ul>
+                        <?php
+                        $data = $result->fetchAll();
+                        foreach ($data as $dt) {
+                            echo '<img src="maillot/'.$dt['nomFichier'].'"/>';
+                        }
+                    }
+                ?>
             </article>
-            <aside>
-                <div class="nav-container">
-                    <p>Conseils</p>
-                    <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                    </ul>
-                </div>
-            </aside>
         </section>
     </div>
     <footer>
