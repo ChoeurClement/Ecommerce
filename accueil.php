@@ -54,17 +54,37 @@
         <section>
             <article>
                 <?php 
-                    $sql = "SELECT nomFichier FROM maillot;";
+                    $sql = "SELECT nomFichier, equipe, prix, marque FROM maillot;";
                     $result = $db->prepare($sql);
                     $result->execute();
                     
                     if($result->rowCount() > 0){
-                        ?>
-                            <ul>
-                        <?php
                         $data = $result->fetchAll();
                         foreach ($data as $dt) {
-                            echo '<img src="maillot/'.$dt['nomFichier'].'"/>';
+                            ?>
+                                <div class="container">
+                                    <div class="card">
+                                        <div class="box">
+                                            <div class="content">
+                                                <?php echo utf8_encode('<h3>'.$dt['equipe'].'</h3>'); ?>
+                                                <?php echo '<img src="maillot/'.$dt['nomFichier'].'"/>'; ?>
+                                                <?php echo '<p>'.$dt['prix'].' €</p>'; ?>
+                                                <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
+                                                <form action="panier.php" method="post">
+                                                    <select name="pets" id="pet-select">
+                                                        <option value="">--Choisissez une taille--</option>
+                                                        <option value="S">S</option>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="XL">XL</option>
+                                                    </select>
+                                                    <button class="button3" type="submit">Ajouter au panier</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
                         }
                     }
                 ?>

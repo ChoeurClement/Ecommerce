@@ -26,4 +26,5 @@ $req->execute([
     'password' => $password
 ]);
 echo "Compte crée";
+header('location: compte.php');
 ?>
