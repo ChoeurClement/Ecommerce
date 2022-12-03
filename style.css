@@ -123,6 +123,11 @@ img {
     object-fit: cover;
   }
 
+li a{
+  text-decoration: none;
+  color: #000;
+}
+
 .containerInscription{
     display: flex;
     justify-content: center;
@@ -235,7 +240,7 @@ img {
   body .container .card {
     position: relative;
     min-width: 320px;
-    height: 600px;
+    height: 700px;
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
       inset -5px -5px 15px rgba(255, 255, 255, 0.1),
       5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
@@ -362,4 +367,22 @@ img {
     .nav-container ul{
         font-size: 2rem;
     }
+}
+
+@media screen and (max-width: 1240px){
+  body .container {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1240px) and (max-width: 1629px){
+  body .container {
+    width: 33%;
+  }
+}
+
+@media screen and (min-width: 1629px){
+  body .container {
+    width: 25%;
+  }
 }

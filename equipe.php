@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+    session_start();
+    $equipe = $_GET['equipe'];
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,13 +22,10 @@
     </header>
     <div class="contenu">
         <nav>
-            <div class="nav-container">
-                <p>Rechercher</p>
-                <input type="text" id="recherche" name="recherche" size="11">
-                <input type="button" value="Ok">
-            </div>
-            <div class="nav-container">
-                <p>Sélections</p>
+
+        </nav>
+        <section>
+            <article>
                 <?php
                     try{
                         $db = new PDO('mysql:host=localhost;dbname=tpecommerce', 'root', '');
@@ -33,28 +33,8 @@
                     catch(Exception $e){
                         die('Erreur : '.$e->getMessage());
                     }
-
-                    $sql = "SELECT equipe FROM maillot GROUP BY equipe;";
-                    $result = $db->prepare($sql);
-                    $result->execute();
                     
-                    if($result->rowCount() > 0){
-                        ?>
-                            <ul>
-                        <?php
-                        $data = $result->fetchAll();
-                        foreach ($data as $dt) {
-                            echo utf8_encode('<li><a href="equipe.php?equipe='.$dt['equipe'].'">'.$dt['equipe'].'</a></li>');
-                        }
-                    }
-                ?>
-                            </ul>
-            </div>
-        </nav>
-        <section>
-            <article>
-                <?php 
-                    $sql = "SELECT nomFichier, equipe, prix, marque FROM maillot;";
+                    $sql = "SELECT nomFichier, equipe, prix, marque FROM maillot WHERE equipe = '$equipe';";
                     $result = $db->prepare($sql);
                     $result->execute();
                     
