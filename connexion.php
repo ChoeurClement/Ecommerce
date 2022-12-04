@@ -17,6 +17,7 @@ session_start();
             $data = $result->fetchAll();
             if(password_verify($password, $data[0]["password"])){
                 $_SESSION["email"] = $email;
+                $_SESSION["client"] = $data[0]["idClient"];
                 header('location: compte.php');
             } else{
                 echo "Mauvais email ou mot de passe !";

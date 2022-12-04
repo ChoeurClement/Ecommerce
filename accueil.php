@@ -54,7 +54,7 @@
         <section>
             <article>
                 <?php 
-                    $sql = "SELECT nomFichier, equipe, prix, marque FROM maillot;";
+                    $sql = "SELECT idMaillot, nomFichier, equipe, prix, marque FROM maillot;";
                     $result = $db->prepare($sql);
                     $result->execute();
                     
@@ -71,7 +71,9 @@
                                                 <?php echo '<p>'.$dt['prix'].' €</p>'; ?>
                                                 <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
                                                 <form action="panier.php" method="post">
-                                                    <select name="pets" id="pet-select">
+                                                    <input name="maillot" value="<?php echo $dt['idMaillot'];?>" type="hidden">
+                                                    <input name="prix" value="<?php echo $dt['prix'];?>" type="hidden">
+                                                    <select name="taille" id="taille-select">
                                                         <option value="">--Choisissez une taille--</option>
                                                         <option value="S">S</option>
                                                         <option value="M">M</option>
