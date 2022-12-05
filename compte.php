@@ -13,7 +13,7 @@
         <div class="onglets">
             <a href="accueil.php">Accueil</a>
             <a href="conseils.php">Conseils</a>
-            <a href="panier.php">Panier</a>
+            <a href="panier.php?from=page.php">Panier</a>
             <p>Compte</p>
         </div>
     </header>

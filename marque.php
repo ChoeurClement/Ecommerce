@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    $equipe = $_GET['equipe'];
+    $marque = $_GET['marque'];
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
                         die('Erreur : '.$e->getMessage());
                     }
                     
-                    $sql = "SELECT nomFichier, equipe, prix, marque FROM maillot WHERE equipe = '$equipe';";
+                    $sql = "SELECT nomFichier, equipe, prix, marque FROM maillot WHERE marque = '$marque';";
                     $result = $db->prepare($sql);
                     $result->execute();
                     

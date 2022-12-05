@@ -25,48 +25,77 @@
             <article>
                 <h1>Voici le(s) article(s) présent dans votre panier.</h1>
                 <?php 
-                    $maillot = $_POST['maillot'];
                     $client = $_SESSION['client'];
-                    $taille = $_POST['taille'];
-                    $prix = $_POST['prix'];
-
+                    
+                    $from = $_GET['from'];
                     try{
                         $db = new PDO('mysql:host=localhost;dbname=tpecommerce', 'root', '');
                     }
                     catch(Exception $e){
                         die('Erreur : '.$e->getMessage());
                     }
-
-                    $sql = "INSERT INTO panier (panierClient, panierMaillot, quantiteTotal, montantTotal) VALUES ('$client', '$maillot', 1, '$prix');";
-                    $req = $db->prepare($sql);
-                    $req->execute([
-                        'panierClient' => $client,
-                        'panierMaillot' => $maillot,
-                        'quantiteTotal' => 1,
-                        'montantTotal' => $prix,
-                    ]);
-
-                    $sql = "SELECT nomFichier, equipe, prix, marque, taille, quantiteTotal FROM maillot INNER JOIN panier ON maillot.idMaillot = panier.panierMaillot WHERE panierClient = $client;";
-                    $req = $db->prepare($sql);
-                    $req->execute();
                     
-                    if($req->rowCount() > 0){
-                        $data = $req->fetchAll();
-                        foreach ($data as $dt) {
-                            ?>
-                                <div class="container">
-                                    <div class="card">
-                                        <div class="box">
-                                            <div class="content">
-                                                <?php echo utf8_encode('<h3>'.$dt['equipe'].'</h3>'); ?>
-                                                <?php echo '<img src="maillot/'.$dt['nomFichier'].'"/>'; ?>
-                                                <?php echo '<p>'.$dt['prix'].' €</p>'; ?>
-                                                <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
+                    if($from == "page"){
+                        
+                        $sql = "SELECT nomFichier, equipe, prix, marque, taille, quantiteTotal FROM maillot INNER JOIN panier ON maillot.idMaillot = panier.panierMaillot WHERE panierClient = $client;";
+                        $req = $db->prepare($sql);
+                        $req->execute();
+                        
+                        if($req->rowCount() > 0){
+                            $data = $req->fetchAll();
+                            foreach ($data as $dt) {
+                                ?>
+                                    <div class="container">
+                                        <div class="card">
+                                            <div class="box">
+                                                <div class="content">
+                                                    <?php echo utf8_encode('<h3>'.$dt['equipe'].'</h3>'); ?>
+                                                    <?php echo '<img src="maillot/'.$dt['nomFichier'].'"/>'; ?>
+                                                    <?php echo '<p>'.$dt['prix'].' €</p>'; ?>
+                                                    <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php
+                                <?php
+                            }
+                        }
+                    } else{
+
+                        $taille = $_POST['taille'];
+                        $prix = $_POST['prix'];
+                        $maillot = $_POST['maillot'];
+                        $sql = "INSERT INTO panier (panierClient, panierMaillot, quantiteTotal, montantTotal) VALUES ('$client', '$maillot', 1, '$prix');";
+                        $req = $db->prepare($sql);
+                        $req->execute([
+                            'panierClient' => $client,
+                            'panierMaillot' => $maillot,
+                            'quantiteTotal' => 1,
+                            'montantTotal' => $prix,
+                        ]);
+
+                        $sql = "SELECT nomFichier, equipe, prix, marque, taille, quantiteTotal FROM maillot INNER JOIN panier ON maillot.idMaillot = panier.panierMaillot WHERE panierClient = $client;";
+                        $req = $db->prepare($sql);
+                        $req->execute();
+                        
+                        if($req->rowCount() > 0){
+                            $data = $req->fetchAll();
+                            foreach ($data as $dt) {
+                                ?>
+                                    <div class="container">
+                                        <div class="card">
+                                            <div class="box">
+                                                <div class="content">
+                                                    <?php echo utf8_encode('<h3>'.$dt['equipe'].'</h3>'); ?>
+                                                    <?php echo '<img src="maillot/'.$dt['nomFichier'].'"/>'; ?>
+                                                    <?php echo '<p>'.$dt['prix'].' €</p>'; ?>
+                                                    <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                            }
                         }
                     }
                 ?>

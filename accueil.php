@@ -13,7 +13,7 @@
         <div class="onglets">
             <p>Accueil</p>
             <a href="conseils.php">Conseils</a>
-            <a href="panier.php">Panier</a>
+            <a href="panier.php?from=page">Panier</a>
             <a href="compte.php">Compte</a>
         </div>
     </header>
@@ -50,6 +50,44 @@
                 ?>
                             </ul>
             </div>
+            <div class="nav-container">
+                <p>Marque</p>
+                <?php
+                    $sql = "SELECT marque FROM maillot GROUP BY marque;";
+                    $result = $db->prepare($sql);
+                    $result->execute();
+                    
+                    if($result->rowCount() > 0){
+                        ?>
+                            <ul>
+                        <?php
+                        $data = $result->fetchAll();
+                        foreach ($data as $dt) {
+                            echo utf8_encode('<li><a href="marque.php?marque='.$dt['marque'].'">'.$dt['marque'].'</a></li>');
+                        }
+                    }
+                ?>
+                            </ul>
+            </div>
+            <div class="nav-container">
+                <p>Couleur principale</p>
+                <?php
+                    $sql = "SELECT couleurPrincipal FROM maillot GROUP BY couleurPrincipal;";
+                    $result = $db->prepare($sql);
+                    $result->execute();
+                    
+                    if($result->rowCount() > 0){
+                        ?>
+                            <ul>
+                        <?php
+                        $data = $result->fetchAll();
+                        foreach ($data as $dt) {
+                            echo utf8_encode('<li><a href="couleur.php?couleurPrincipal='.$dt['couleurPrincipal'].'">'.$dt['couleurPrincipal'].'</a></li>');
+                        }
+                    }
+                ?>
+                            </ul>
+            </div>
         </nav>
         <section>
             <article>
@@ -70,7 +108,7 @@
                                                 <?php echo '<img src="maillot/'.$dt['nomFichier'].'"/>'; ?>
                                                 <?php echo '<p>'.$dt['prix'].' €</p>'; ?>
                                                 <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
-                                                <form action="panier.php" method="post">
+                                                <form action="panier.php?from=post" method="post">
                                                     <input name="maillot" value="<?php echo $dt['idMaillot'];?>" type="hidden">
                                                     <input name="prix" value="<?php echo $dt['prix'];?>" type="hidden">
                                                     <select name="taille" id="taille-select">
