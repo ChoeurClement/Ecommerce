@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Site E-commerce | Choeur Clément | conseils</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <header>
@@ -13,7 +14,7 @@
         <div class="onglets">
             <a href="accueil.php">Accueil</a>
             <p>Conseils</p>
-            <a href="panier.php?from=page.php">Panier</a>
+            <a href="panier.php?from=page">Panier</a>
             <a href="compte.php">Compte</a>
         </div>
     </header>
@@ -23,7 +24,7 @@
         </nav>
         <section>
             <article>
-                <p>Ceci est un article</p>
+                
             </article>
             <aside>
                 <div class="nav-container">

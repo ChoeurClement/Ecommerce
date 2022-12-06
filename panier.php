@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Site E-commerce | Choeur Clément</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <header>
@@ -37,7 +38,7 @@
                     
                     if($from == "page"){
                         
-                        $sql = "SELECT nomFichier, equipe, prix, marque, taille, quantiteTotal FROM maillot INNER JOIN panier ON maillot.idMaillot = panier.panierMaillot WHERE panierClient = $client;";
+                        $sql = "SELECT nomFichier, equipe, prix, marque, tailleMaillot, quantiteTotal, montantTotal FROM maillot INNER JOIN panier ON maillot.idMaillot = panier.panierMaillot WHERE panierClient = $client;";
                         $req = $db->prepare($sql);
                         $req->execute();
                         
@@ -51,8 +52,9 @@
                                                 <div class="content">
                                                     <?php echo utf8_encode('<h3>'.$dt['equipe'].'</h3>'); ?>
                                                     <?php echo '<img src="maillot/'.$dt['nomFichier'].'"/>'; ?>
-                                                    <?php echo '<p>'.$dt['prix'].' €</p>'; ?>
+                                                    <?php echo '<p>x'.$dt['quantiteTotal'].' : '.$dt['montantTotal'].' €</p>'; ?>
                                                     <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
+                                                    <?php echo utf8_encode('<p>Taille : '.$dt['tailleMaillot'].'</p>'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -63,38 +65,48 @@
                     } else{
 
                         $taille = $_POST['taille'];
-                        $prix = $_POST['prix'];
+                        $quantite = $_POST['quantite'];
                         $maillot = $_POST['maillot'];
-                        $sql = "INSERT INTO panier (panierClient, panierMaillot, quantiteTotal, montantTotal) VALUES ('$client', '$maillot', 1, '$prix');";
-                        $req = $db->prepare($sql);
-                        $req->execute([
-                            'panierClient' => $client,
-                            'panierMaillot' => $maillot,
-                            'quantiteTotal' => 1,
-                            'montantTotal' => $prix,
-                        ]);
 
-                        $sql = "SELECT nomFichier, equipe, prix, marque, taille, quantiteTotal FROM maillot INNER JOIN panier ON maillot.idMaillot = panier.panierMaillot WHERE panierClient = $client;";
-                        $req = $db->prepare($sql);
-                        $req->execute();
-                        
-                        if($req->rowCount() > 0){
-                            $data = $req->fetchAll();
-                            foreach ($data as $dt) {
-                                ?>
-                                    <div class="container">
-                                        <div class="card">
-                                            <div class="box">
-                                                <div class="content">
-                                                    <?php echo utf8_encode('<h3>'.$dt['equipe'].'</h3>'); ?>
-                                                    <?php echo '<img src="maillot/'.$dt['nomFichier'].'"/>'; ?>
-                                                    <?php echo '<p>'.$dt['prix'].' €</p>'; ?>
-                                                    <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
+                        if($taille == ""){
+                            echo "Aucune taille selectionné pour l'article !";
+                        }elseif($quantite == ""){
+                            echo "Aucune quantité selectionné pour l'article !";
+                        }else{
+                            $prix = $quantite * $_POST['prix'];
+                            //Ajout dans le panier du maillot
+                            $sql = "INSERT INTO panier (panierClient, panierMaillot, quantiteTotal, tailleMaillot, montantTotal) VALUES ('$client', '$maillot', '$quantite', '$taille', '$prix');";
+                            $req = $db->prepare($sql);
+                            $req->execute([
+                                'panierClient' => $client,
+                                'panierMaillot' => $maillot,
+                                'quantiteTotal' => $quantite,
+                                'montantTotal' => $prix,
+                            ]);
+
+                            $sql = "SELECT nomFichier, equipe, prix, marque, tailleMaillot, quantiteTotal, montantTotal FROM maillot INNER JOIN panier ON maillot.idMaillot = panier.panierMaillot WHERE panierClient = $client;";
+                            $req = $db->prepare($sql);
+                            $req->execute();
+                            
+                            if($req->rowCount() > 0){
+                                $data = $req->fetchAll();
+                                foreach ($data as $dt) {
+                                    ?>
+                                        <div class="container">
+                                            <div class="card">
+                                                <div class="box">
+                                                    <div class="content">
+                                                        <?php echo utf8_encode('<h3>'.$dt['equipe'].'</h3>'); ?>
+                                                        <?php echo '<img src="maillot/'.$dt['nomFichier'].'"/>'; ?>
+                                                        <?php echo '<p>x'.$dt['quantiteTotal'].' : '.$dt['montantTotal'].' €</p>'; ?>
+                                                        <?php echo utf8_encode('<p>'.$dt['marque'].'</p>'); ?>
+                                                        <?php echo utf8_encode('<p>Taille : '.$dt['tailleMaillot'].'</p>'); ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php
+                                    <?php
+                                }
                             }
                         }
                     }

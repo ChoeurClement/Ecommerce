@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Site E-commerce | Choeur Clément | accueil</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <header>
@@ -117,6 +118,19 @@
                                                         <option value="M">M</option>
                                                         <option value="L">L</option>
                                                         <option value="XL">XL</option>
+                                                    </select>
+                                                    <select name="quantite" id="quantite-select">
+                                                        <option value="">--Choisissez une quantite--</option>
+                                                        <option value=1>1</option>
+                                                        <option value=2>2</option>
+                                                        <option value=3>3</option>
+                                                        <option value=4>4</option>
+                                                        <option value=5>5</option>
+                                                        <option value=6>6</option>
+                                                        <option value=7>7</option>
+                                                        <option value=8>8</option>
+                                                        <option value=9>9</option>
+                                                        <option value=10>10</option>
                                                     </select>
                                                     <button class="button3" type="submit">Ajouter au panier</button>
                                                 </form>

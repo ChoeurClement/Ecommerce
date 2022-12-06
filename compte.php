@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Site E-commerce | Choeur Clément | compte</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <header>
@@ -13,7 +14,7 @@
         <div class="onglets">
             <a href="accueil.php">Accueil</a>
             <a href="conseils.php">Conseils</a>
-            <a href="panier.php?from=page.php">Panier</a>
+            <a href="panier.php?from=page">Panier</a>
             <p>Compte</p>
         </div>
     </header>
@@ -47,7 +48,7 @@
         </section>
     </div>
     <footer>
-        <p>Ceci est un footer</p>
+        
     </footer>
 </body>
 </html>
